@@ -1,0 +1,51 @@
+<div class="meaning-box"> 
+                    <div class="mbb">
+                        <div class="partofspeech">
+                            <h1> Noun </h1>
+                        </div>
+
+                        <div class="propbox">
+                            <div class="def-title">
+                                <h1> Definition </h1>
+                            </div>
+
+                            <div class="def-list">
+                                <ul> 
+                                    <li> used as a greeting or to begin a phone conversation. </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="propbox">
+                            <div class="def-title">
+                                <h1> Example </h1>
+                            </div>
+
+                            <div class="def-list">
+                                <ul> 
+                                    <li> used as a greeting or to begin a phone conversation. </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="synonyms">
+                            <div class="syn-title">
+                                 <h1> Synonyms </h1>
+                            </div>
+
+                            <div class="syn-list">
+                                <ul> 
+                                    <li> word1 </li>
+                                    <li> word2 </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    
+                </div>
