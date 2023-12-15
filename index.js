@@ -135,14 +135,14 @@ async function searchWord(word) {
         phonetics.innerHTML = response[0]['phonetics'][1]['text']
     }
     let meaningLength = response[0].meanings.length
-    console.log(response[0])
+    // console.log(response[0])
     let tab = ''
     for(let i = 0; i < meaningLength; i++){ 
         let curr_pos = response[0].meanings[i]['partOfSpeech']
         let defex = getDefinitionAndExample(response[0].meanings[i]['definitions'])//response[0].meanings[i]['definitions
         let curr_definition = defex[0] 
         let curr_example = defex[1]
-        console.log(response[0].meanings[i]['synonyms'])
+        // console.log(response[0].meanings[i]['synonyms'])
         let synonyms = getSynonyms(response[0].meanings[i]['synonyms'])
         let assembleDiv = fillDiv(curr_pos, curr_definition, curr_example, synonyms)
         tab+=assembleDiv

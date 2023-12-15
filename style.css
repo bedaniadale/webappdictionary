@@ -268,5 +268,50 @@ body {
     display: inline-block; 
     color: darkblue;
     font-weight: 500;
-    margin: 0 1rem
+    margin: 0 1rem; 
+}
+
+
+@media only screen and (max-width: 600px) { 
+    .header h1, .header span { 
+        font-size: 15px;
+    }
+
+    .dbox { 
+        width: 90%; 
+    
+    }
+
+    .search-bar { 
+        width :80%; 
+    }
+
+    #wordinput { 
+        font-size: 1.2rem;
+    }
+
+    
+    .word h1 { 
+        font-size: 3rem;
+        padding: 25px 50px;
+    }
+
+    .synonyms { 
+        margin-bottom: 2rem;
+    }
+
+    .meaning-box { 
+        height: 90%
+    }
+
+
+    .def-list ul li { 
+        font-size: 0.9rem;
+    }
+
+    .mbb { 
+        height: 100%;
+    }
+    
+
 }
