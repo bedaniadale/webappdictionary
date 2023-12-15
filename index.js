@@ -18,7 +18,6 @@ function resetBar() {
 }
 
 function fillDiv(pos, def, ex, syns) { 
-    let example = ex = "undefined" ? "No example given" : ex
 
     let synonymwords = ''
     for(let i = 0; i < syns.length; i++) { 
@@ -53,7 +52,7 @@ function fillDiv(pos, def, ex, syns) {
 
             <div class="def-list">
                 <ul> 
-                    <li> ${example}</li>
+                    <li> ${ex}</li>
                     
                 </ul>
             </div>
@@ -84,6 +83,33 @@ function fillDiv(pos, def, ex, syns) {
 `
 }
 
+function getDefinitionAndExample(items) {
+    
+    for(let i = 0; i < items.length; i++) { 
+        // console.log(items[i])
+        if(items[i]['example']) { 
+            return [items[i]['definition'], items[i]['example']]
+           
+        }
+    }
+    return [items[0]['definition'], 'No example given']
+}
+
+function getSynonyms(items){ 
+    let synonyms = []
+    if(items.length == 0) { 
+        return ["None"]
+    }
+
+    for(let i = 0; i < items.length; i++) { 
+        synonyms.push(items[i])
+        if(synonyms.length == 5) { 
+            return synonyms
+        }
+    }
+    return synonyms
+}
+
 async function searchWord(word) { 
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
 
@@ -93,11 +119,15 @@ async function searchWord(word) {
     })
     if( response['title'] == 'No Definitions Found') { 
         alert("no definition found")
+        let mainword = document.querySelector(".mainword")
+        mainword.style.opacity = "0"
+        meaningbox.innerHTML = ""
         return
     }
+    let mainword = document.querySelector(".mainword")
+    mainword.style.opacity = "1"
     let synonyms = []
-    console.log(response[0] )
-    
+
     mainWord.innerHTML = word
     if(response[0]['phonetic']) { 
         phonetics.innerHTML = response[0]['phonetic']
@@ -105,24 +135,15 @@ async function searchWord(word) {
         phonetics.innerHTML = response[0]['phonetics'][1]['text']
     }
     let meaningLength = response[0].meanings.length
-   
+    console.log(response[0])
     let tab = ''
     for(let i = 0; i < meaningLength; i++){ 
         let curr_pos = response[0].meanings[i]['partOfSpeech']
-        let curr_definition = response[0].meanings[i]['definitions'][0]['definition']
-        let curr_example = response[0].meanings[i]['definitions'][0 ]['example'] 
-        let syn_count = response[0].meanings[i]['definitions'][0]['synonyms'].length
-        let synarrays = response[0].meanings[i]['definitions'][0]['synonyms']
-        if(syn_count == 0) { 
-            synonyms.push("None") 
-        } else { 
-            for(let j = 0; j < syn_count; j++){ 
-                if(synonyms[0] == 'None'){ 
-                    break
-                }
-                synonyms.push(synarrays[j])
-            } 
-        }
+        let defex = getDefinitionAndExample(response[0].meanings[i]['definitions'])//response[0].meanings[i]['definitions
+        let curr_definition = defex[0] 
+        let curr_example = defex[1]
+        console.log(response[0].meanings[i]['synonyms'])
+        let synonyms = getSynonyms(response[0].meanings[i]['synonyms'])
         let assembleDiv = fillDiv(curr_pos, curr_definition, curr_example, synonyms)
         tab+=assembleDiv
     }
@@ -150,7 +171,8 @@ function openSearchBar(status){
         alert("Word cannot be blanked!")
         return
     } 
-
+  
+    
     searchWord(searchInput)
 
     resetBar()
