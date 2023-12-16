@@ -121,11 +121,16 @@ async function searchWord(word) {
         alert("no definition found")
         let mainword = document.querySelector(".mainword")
         mainword.style.opacity = "0"
+        document.querySelector(".dbox").classList.remove("non-flexed")
+        document.querySelector(".dbox").classList.add("flexed")
         meaningbox.innerHTML = ""
         return
     }
     let mainword = document.querySelector(".mainword")
     mainword.style.opacity = "1"
+    document.querySelector(".dbox").classList.remove("flexed")
+    document.querySelector(".dbox").classList.add("non-flexed")
+
     let synonyms = []
 
     mainWord.innerHTML = word
@@ -174,8 +179,8 @@ function openSearchBar(status){
   
     
     searchWord(searchInput)
-
     resetBar()
+  
     return
    
 }
